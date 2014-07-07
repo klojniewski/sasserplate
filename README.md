@@ -10,7 +10,6 @@
 * helpers - pomocnicze elementy
 * typography - nadawanie styli fontow
 * forms - formularze
-* buttons - przyciski 
 * layouts - layouty i glowne sekcje strony
 * components - komponenty czyli elementy bedace wewnatrz layoutow i glownych sekcji
 * vendor - includowanie bibliotek np. bx-slider
