@@ -414,3 +414,17 @@ table {
     border-spacing: 0;
 }
 
+input,
+select,
+textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    
+    &:focus {
+        outline: none;
+    }
+}
+textarea {
+    resize: none;
+}
