@@ -1,17 +1,14 @@
 # SASSERPLATE
 
-## Spis treści
-
-
 
 ## main.scss
 
-* variables - kolory, fonty (również import) 
-* helpers - pomocnicze elementy
-* typography - nadawanie styli fontow
-* forms - formularze
-* layouts - layouty i glowne sekcje strony
-* components - komponenty czyli elementy bedace wewnatrz layoutow i glownych sekcji
-* vendor - includowanie bibliotek np. bx-slider
+* variables - colors, fonts (with imports), sizes
+* helpers - additional classes
+* typography - default fonts, margins and colors
+* forms - forms
+* layouts - page layouts, main sections
+* components - elements inside main sections
+* vendor - css for vendor libraries
 * media-queries 
 * print
