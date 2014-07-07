@@ -1,36 +1,48 @@
-// Compass
+/* ==========================================================================
+   Index of scss files
+   ========================================================================== */
+
+/* Compass Framework (http://compass-style.org/reference/compass/)
+   ========================================================================== */
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 
-// Normalize Print
+/* Normalize
+   ========================================================================== */
 @import "partials/normalize";
 
-// Variables
+/* Variables (colors, sizes, fonts)
+   ========================================================================== */
 @import "partials/variables";
 
-// Helpers
+/* Helpers (common used classes: buttons, clearfix...)
+   ========================================================================== */
 @import "partials/helpers";
 
-// Typography
+/* Typograpy
+   ========================================================================== */
 @import "partials/typography";
 
-// Forms
+/* Forms
+   ========================================================================== */
 @import "partials/forms";
 
-// Buttons
-@import "partials/buttons";
-
-// Layout
+/* Layout Definition (base)
+   ========================================================================== */
 @import "partials/layouts";
 
-// Components
+/* Layout Components
+   ========================================================================== */
 @import "partials/components";
 
-// Vendor
+/* Vendor CSS
+   ========================================================================== */
 @import "partials/vendor";
 
-// Media Queries
+/* Media Queries
+   ========================================================================== */
 @import "partials/media-queries";
 
-// Print
+/* Print Styles
+   ========================================================================== */
 @import "partials/print";
