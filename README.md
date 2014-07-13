@@ -12,3 +12,10 @@
 * vendor - css for vendor libraries
 * media-queries 
 * print
+
+
+We can add additional files like:
+* buttons - buttons
+* tables - tables
+* alerts - alerts
+* popups - popups
