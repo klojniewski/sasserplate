@@ -4,7 +4,7 @@ module.exports = function(grunt) {
         watch: {
             // compass, sass compilation
             compass: {
-                files: ['sass/*.scss', 'sass/partials/*.scss'],
+                files: ['src/sass/*.scss', 'src/sass/partials/*.scss'],
                 tasks: ['compass:dev']
             },
             // enable LiveReload for css files
