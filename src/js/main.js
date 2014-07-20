@@ -2,10 +2,15 @@
 (function ($, window, document) {
     "use strict";
     window.CHANGE_ME = window.CHANGE_ME || {
+        $body: null,
         init: function () {
-            this.sampleFunction();
+            this.$body = $('body');
+            this.liveReload();
         },
-        sampleFunction: function () {
+        liveReload: function () {
+            if (window.location.hostname === 'localhost') {
+                this.$body.append('<script src="//localhost:9000/livereload.js"></script>');
+            }
         }
     };
     $(document).on('ready', function () {
