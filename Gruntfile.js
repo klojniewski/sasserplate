@@ -1,6 +1,31 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        copy: {
+            main: {
+                files: [
+                    {expand: true, src: ['*.html'], dest: 'dist/', filter: 'isFile'},
+                    {expand: true, src: ['static/css/*.css'], dest: 'dist/', filter: 'isFile'},
+                    {expand: true, src: ['static/img/*.*'], dest: 'dist/', filter: 'isFile'},
+                    {expand: true, src: ['static/js/*.*'], dest: 'dist/', filter: 'isFile'}
+                ]
+            }
+        },
+        imagemin: {
+            dynamic: {
+                files: [{
+                    expand: true,
+                    cwd: 'static/img/',
+                    src: ['**/*.{png,jpg,gif}'],
+                    dest: 'dist/static/img'
+                }]
+            }
+        },
+        validation: {
+            files: {
+                src: ['*.html']
+            }
+        },
         watch: {
             // compass, sass compilation
             compass: {
@@ -50,11 +75,22 @@ module.exports = function(grunt) {
                 }
             },
         },
+        connect: {
+            server: {
+                options: {
+                    port: parseInt(10000 * Math.random(100), 10),
+                    hostname: 'localhost',
+                    base: ''
+                }
+            }
+        }
     });
-    // Load the plugin
+    // Load plugin(s).
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
     // Default task(s).
-    grunt.registerTask('default', ['compass:dev' , 'uglify' , 'watch']);
-    // prod build
+    grunt.registerTask('default', ['compass:dev', 'uglify', 'connect:server', 'watch']);
+    // Compile SASS/Compass with production config
     grunt.registerTask('prod', ['compass:prod']);
+    // Prepare distribution package
+    grunt.registerTask('dist', ['compass:prod', 'copy', 'imagemin']);
 };
