@@ -22,14 +22,12 @@ We can add additional files like:
 
 
 ## Requirements
-============
 1. node & npm
 2. ruby & compass
 3. **grunt-cli** node package installed globally:
 `npm install -g grunt-cli`
 
 ## Installation
-============
 
 ```shell
 cd package_directory
@@ -37,7 +35,6 @@ npm install
 ```
 
 ## Grunt Tasks
-============
 
 ### Default Task 
 
