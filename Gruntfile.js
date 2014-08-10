@@ -1,13 +1,23 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         copy: {
-            main: {
+            dev: {
                 files: [
-                    {expand: true, src: ['*.html'], dest: 'dist/', filter: 'isFile'},
-                    {expand: true, src: ['static/css/*.css'], dest: 'dist/', filter: 'isFile'},
-                    {expand: true, src: ['static/img/*.*'], dest: 'dist/', filter: 'isFile'},
-                    {expand: true, src: ['static/js/*.*'], dest: 'dist/', filter: 'isFile'}
+                    // copy javascripts
+                    {
+                        expand: true,
+                        cwd: 'src',
+                        src: ['js/**'],
+                        dest: 'static/'
+                    },
+                    // copy images
+                    {
+                        expand: true,
+                        cwd: 'src',
+                        src: ['img/**'],
+                        dest: 'static/'
+                    }
                 ]
             }
         },
@@ -17,13 +27,8 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'static/img/',
                     src: ['**/*.{png,jpg,gif}'],
-                    dest: 'dist/static/img'
+                    dest: 'static/img'
                 }]
-            }
-        },
-        validation: {
-            files: {
-                src: ['*.html']
             }
         },
         watch: {
@@ -41,15 +46,15 @@ module.exports = function(grunt) {
             },
             // enable LiveReload for html files
             html: {
-                files: ['index.html'],
+                files: ['*.html'],
                 options: {
                     livereload: 9000
                 }
             },
-            // uglify js files
-            js: {
-                files: ['src/js/**/*.js'],
-                tasks: ['uglify']
+            // enable JS copy
+            copy: {
+                files: ['src/js/*.js', 'src/img/**'],
+                tasks: ['copy:dev']
             }
         },
         compass: {
@@ -58,11 +63,11 @@ module.exports = function(grunt) {
                     config: 'config.rb'
                 }
             },
-            prod: {
+            compile: {
                 options: {
-                    config: 'config_production.rb'
+                    config: 'config.rb'
                 }
-            },
+            }
         },
         uglify: {
             all: {
@@ -73,24 +78,24 @@ module.exports = function(grunt) {
                         'src/js/main.js'
                     ]
                 }
-            },
+            }
         },
         connect: {
             server: {
                 options: {
-                    port: parseInt(10000 * Math.random(100), 10),
+                    port: grunt.option('port') || 8000,
                     hostname: 'localhost',
                     base: ''
                 }
             }
         }
     });
-    // Load plugin(s).
+    // Load the plugin
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
     // Default task(s).
-    grunt.registerTask('default', ['compass:dev', 'uglify', 'connect:server', 'watch']);
-    // Compile SASS/Compass with production config
-    grunt.registerTask('prod', ['compass:prod']);
-    // Prepare distribution package
-    grunt.registerTask('dist', ['compass:prod', 'copy', 'imagemin']);
+    grunt.registerTask('default', ['compass:dev', 'connect:server', 'watch']);
+    // Images compression
+    grunt.registerTask('compress', ['imagemin:dynamic']);
+    // SASSS/Compass compilation only
+    grunt.registerTask('compile', ['compass:compile', 'copy:dev', 'imagemin:static']);
 };
