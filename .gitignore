@@ -1,1 +1,5 @@
 .sass-cache/
+node_modules/
+dist/
+validation-report.json
+validation-status.json
