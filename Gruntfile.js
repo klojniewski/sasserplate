@@ -17,6 +17,12 @@ module.exports = function (grunt) {
                         cwd: 'src',
                         src: ['img/**'],
                         dest: 'static/'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'node_modules/jquery/dist',
+                        src: ['jquery.js'],
+                        dest: 'static/js/vendor'
                     }
                 ]
             }
@@ -93,7 +99,7 @@ module.exports = function (grunt) {
     // Load the plugin
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
     // Default task(s).
-    grunt.registerTask('default', ['compass:dev', 'connect:server', 'watch']);
+    grunt.registerTask('default', ['compass:dev', 'connect:server', 'copy:dev', 'watch']);
     // Images compression
     grunt.registerTask('compress', ['imagemin:dynamic']);
     // SASSS/Compass compilation only
