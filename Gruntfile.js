@@ -18,6 +18,13 @@ module.exports = function (grunt) {
                         src: ['img/**'],
                         dest: 'static/'
                     },
+                    // copy fonts
+                    {
+                        expand: true,
+                        cwd: 'src',
+                        src: ['fonts/**'],
+                        dest: 'static/'
+                    },
                     {
                         expand: true,
                         cwd: 'node_modules/jquery/dist',
