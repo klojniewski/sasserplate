@@ -4,8 +4,9 @@
 http_path = "/"
 css_dir = "static/css"
 sass_dir = "src/sass"
-images_dir = "img"
+images_dir = "static/img"
 javascripts_dir = "js"
+relative_assets = true
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
