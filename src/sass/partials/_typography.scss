@@ -19,8 +19,7 @@ a {
     color: $color_default;
     
     &:hover {
-        color: $color_green;
-        text-decoration: none;
+        text-decoration: underline;
     }
 }
 p { 

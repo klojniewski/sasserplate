@@ -2,6 +2,11 @@
    Forms
    ========================================================================== */
 .form {
+    fieldset {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
     input,
     textarea {
         &:focus {
