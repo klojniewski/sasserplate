@@ -34,20 +34,10 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        imagemin: {
-            dynamic: {
-                files: [{
-                    expand: true,
-                    cwd: 'static/img/',
-                    src: ['**/*.{png,jpg,gif}'],
-                    dest: 'static/img'
-                }]
-            }
-        },
         watch: {
             // compass, sass compilation
             compass: {
-                files: ['src/sass/*.scss', 'src/sass/partials/*.scss'],
+                files: ['src/sass/*.scss', 'src/sass/partials/*.scss', 'src/sass/vendor/*.scss'],
                 tasks: ['compass:dev']
             },
             // enable LiveReload for css files
@@ -107,8 +97,6 @@ module.exports = function (grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
     // Default task(s).
     grunt.registerTask('default', ['compass:dev', 'connect:server', 'copy:dev', 'watch']);
-    // Images compression
-    grunt.registerTask('compress', ['imagemin:dynamic']);
     // SASSS/Compass compilation only
-    grunt.registerTask('compile', ['compass:compile', 'copy:dev', 'imagemin:static']);
+    grunt.registerTask('compile', ['compass:compile', 'copy:dev']);
 };
