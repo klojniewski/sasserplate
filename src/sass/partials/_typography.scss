@@ -9,6 +9,8 @@ body {
     font-size: 12px;
     line-height: 1.4;
     color: $color_default;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Global Typography
@@ -20,16 +22,5 @@ a {
     
     &:hover {
         text-decoration: underline;
-    }
-}
-p { 
-    margin: 20px 0 20px 0;
-
-    &:first-child {
-        margin-top: 0;
-    }
-
-    &:last-child {
-        margin-bottom: 0;
     }
 }
