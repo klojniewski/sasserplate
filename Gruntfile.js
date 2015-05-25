@@ -38,7 +38,7 @@ module.exports = function (grunt) {
             // compass, sass compilation
             compass: {
                 files: ['src/sass/*.scss', 'src/sass/partials/*.scss', 'src/sass/vendor/*.scss'],
-                tasks: ['compass:dev']
+                tasks: ['compass:dev', 'cssmin']
             },
             // enable LiveReload for css files
             css: {
@@ -58,7 +58,12 @@ module.exports = function (grunt) {
             copy: {
                 files: ['src/js/*.js', 'src/img/**'],
                 tasks: ['copy:dev']
-            }
+            },
+            // enable JS plugins compile
+            scripts: {
+                files: ['src/js/plugins/*.js'],
+                tasks: ['uglify:plugins']
+            },
         },
         compass: {
             dev: {
@@ -78,8 +83,15 @@ module.exports = function (grunt) {
                 files: {
                     'static/js/app.min.js': [
                         'node_modules/jquery/dist/jquery.js',
-                        'src/js/plugins.js',
+                        'src/js/plugins/*.js',
                         'src/js/main.js'
+                    ]
+                }
+            },
+            plugins: {
+                files: {
+                    'static/js/plugins.min.js': [
+                        'src/js/plugins/*.js',
                     ]
                 }
             }
@@ -91,6 +103,21 @@ module.exports = function (grunt) {
                     hostname: 'localhost',
                     base: ''
                 }
+            }
+        },
+        cssmin: {
+            options: {
+                shorthandCompacting: false,
+                roundingPrecision: -1
+            },
+            target: {
+                files: [{
+                    expand: true,
+                    cwd: 'static/css',
+                    src: ['*.css', '!*.min.css'],
+                    dest: 'static/css',
+                    ext: '.min.css'
+                }]
             }
         },
         kraken: {
@@ -112,7 +139,7 @@ module.exports = function (grunt) {
     // Load the plugin
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
     // Default task(s).
-    grunt.registerTask('default', ['compass:dev', 'connect:server', 'copy:dev', 'watch']);
+    grunt.registerTask('default', ['compass:dev', 'connect:server', 'copy:dev', 'cssmin', 'watch']);
     // SASSS/Compass compilation only
     grunt.registerTask('compile', ['compass:compile', 'copy:dev']);
     grunt.registerTask('krak', ['kraken']);
